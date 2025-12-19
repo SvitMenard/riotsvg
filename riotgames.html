@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Riot Games – Modern Color Picker</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* Card */
+.app {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px 40px;
+  width: 360px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* Title */
+h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+input[type="color"] {
+  appearance: none;
+  border: none;
+  width: 60px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: none;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 10px;
+  border: none;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border-radius: 10px;
+  border: none;
+}
+
+/* SVG */
+svg {
+  width: 240px;
+  display: block;
+  margin: 0 auto 20px;
+  transition: transform 0.3s ease;
+}
+
+svg:hover {
+  transform: scale(1.03);
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #e53935, #b71c1c);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(229,57,53,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <h1>Riot Logo Color Picker</h1>
+
+  <svg viewBox="0 0 48 48">
+    <circle id="bg" cx="24" cy="24" r="20" fill="#d32f2f"/>
+    <polygon class="logo" fill="#fff"
+      points="25.891,13.176 12.584,19.462 14.642,28.935 17.356,28.935 16.887,22.159 17.304,22.03 18.936,28.935 21.756,28.935 21.652,20.681 22.068,20.552 23.495,28.935 26.481,28.935 27.185,18.965 27.601,18.835 28.34,28.935 32.288,28.935 33.678,15.07"/>
+    <polygon class="logo" fill="#fff"
+      points="23.612,32.813 22.628,30.278 32.118,30.766 31.711,34.824"/>
+  </svg>
+
+  <div class="controls">
+    <div class="control">
+      <label>Background</label>
+      <input type="color" id="bgColor" value="#d32f2f">
+    </div>
+
+    <div class="control">
+      <label>Logo</label>
+      <input type="color" id="logoColor" value="#ffffff">
+    </div>
+  </div>
+
+  <button onclick="location.href='riotgames2.html'">
+    Bézier verzija
+  </button>
+</div>
+
+<script>
+const bgColor = document.getElementById("bgColor");
+const logoColor = document.getElementById("logoColor");
+
+bgColor.addEventListener("input", e => {
+  document.getElementById("bg").setAttribute("fill", e.target.value);
+});
+
+logoColor.addEventListener("input", e => {
+  document.querySelectorAll(".logo")
+    .forEach(p => p.setAttribute("fill", e.target.value));
+});
+</script>
+
+</body>
+</html>
